@@ -128,6 +128,10 @@ def new():
             os.startfile(FilePathLien[ID])
         def remove(k):
             if k in contenuFile:
+                contenuFilePath.pop(contenuFile.index(k))
+                with open(f".AppData/{i}/FilePath.txt", 'w') as f:
+                    for ligne in contenuFilePath:
+                        f.write(ligne + "\n")
                 contenuFile.remove(k)
                 with open(f".AppData/{i}/File.txt", 'w') as f:
                     for ligne in contenuFile:
@@ -137,6 +141,8 @@ def new():
             New2(i)  # Rappeler ToDos après suppression
         with open(f".AppData/{i}/File.txt", 'r') as f:
             contenuFile = [ligne.strip() for ligne in f.readlines()]
+        with open(f".AppData/{i}/FilePath.txt", 'r') as f:
+            contenuFilePath = [ligne.strip() for ligne in f.readlines()]
         if contenuFile != []:
             a=0
             for k in contenuFile:
